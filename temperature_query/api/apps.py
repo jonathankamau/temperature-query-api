@@ -6,4 +6,4 @@ from django.apps import AppConfig
 class ApiConfig(AppConfig):
     """Required configurations for the API."""
 
-    name = 'api'
+    name = "temperature_query.api"
