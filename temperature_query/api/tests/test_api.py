@@ -1,5 +1,4 @@
-"""
-Tests module for the API.
+"""Tests module for the API.
 
 - Tests for the endpoint.
 - Tests for related methods.
