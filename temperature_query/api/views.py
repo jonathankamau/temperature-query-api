@@ -17,7 +17,7 @@ class TemperatureQuery(APIView):
         return the min, max, average and median temperature data
         for that period.
         """
-        if not city.isalpha():
+        if not city.replace(" ", "").isalpha():
             return Response(
                 {
                     "Error":
@@ -30,7 +30,7 @@ class TemperatureQuery(APIView):
                 {
                     'Error':
                     f"{number_of_days} is invalid! "
-                    "Please provide a valid digit"
+                    "Please provide a valid digit for the number of days"
                 },
                 status=status.HTTP_400_BAD_REQUEST)
 
@@ -52,8 +52,9 @@ class TemperatureQuery(APIView):
                 return Response(
                     {
                         "Error":
-                        f"Could not get temperature details for {city} "
-                        "Please provide a valid city name"
+                        f"Could not get temperature details for {city}. "
+                        f"Please provide a valid city name or check the "
+                        f"name format and try again."
                     },
                     status=status.HTTP_400_BAD_REQUEST)
 
