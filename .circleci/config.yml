@@ -13,10 +13,10 @@ jobs:
       - python/install-deps
       - python/save-cache
       - run:
-          command: ./manage.py test
           name: Test
+          command: coverage run -m pytest
       - coveralls/upload:
-          path_to_lcov: "./reports/coverage/lcov.info"
+          path_to_lcov: "./coverage/lcov/project.lcov"
 
 workflows:
   main:
