@@ -29,7 +29,7 @@ SECRET_KEY = ")^%mkbuj"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS: list = ["127.0.0.1"]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "temperature_query.api.apps.ApiConfig",
     "rest_framework",
+    "temperature_query.api.apps.ApiConfig",
 ]
 
 MIDDLEWARE = [
@@ -109,6 +109,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    "EXCEPTION_HANDLER": "temperature_query.api.utils.custom_exception_handler"
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
