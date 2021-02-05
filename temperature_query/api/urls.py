@@ -1,13 +1,11 @@
 """API URLS file."""
-from django.urls import path
+from django.conf.urls import url
 from temperature_query.api.views import TemperatureQuery
 
-get_temperature = TemperatureQuery.as_view({"get": "get_temperature"})
-
 urlpatterns = [
-    path(
-        r"api/locations/<str:city>/days=<int:number_of_days>",
-        get_temperature,
+    url(
+        r"locations/(?P<city>\w+)/days=(?P<number_of_days>\w+)/$",
+        TemperatureQuery.as_view(),
         name="temperature",
     )
 ]
