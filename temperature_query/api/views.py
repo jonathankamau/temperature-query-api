@@ -66,28 +66,46 @@ class TemperatureQuery(APIView):
                     f"Could not retrieve temperature data for {city}"
                 },
                 status=status.HTTP_404_NOT_FOUND)
+        return Response(
+            {
+                "maximum": self.max_temperature(temperature_details),
+                "minimum": self.min_temperature(temperature_details),
+                "average": self.average_temperature(temperature_details),
+                "median": self.median_temperature(),
+            },
+            status=status.HTTP_200_OK
+        )
 
+    def average_temperature(self, temperature_details):
+        """Compute the average temperature."""
+        self.avg_list = [
+            temp["day"]["avgtemp_f"]
+            for temp in temperature_details["forecast"]["forecastday"]
+        ]
+
+        return sum(self.avg_list) / len(self.avg_list)
+
+    def min_temperature(self, temperature_details):
+        """Compute the minimum temperature."""
         min_list = [
             temp["day"]["mintemp_f"]
             for temp in temperature_details["forecast"]["forecastday"]
         ]
+
+        return min(min_list)
+
+    def max_temperature(self, temperature_details):
+        """Compute the maximum temperature."""
         max_list = [
             temp["day"]["maxtemp_f"]
             for temp in temperature_details["forecast"]["forecastday"]
         ]
-        avg_list = [
-            temp["day"]["avgtemp_f"]
-            for temp in temperature_details["forecast"]["forecastday"]
-        ]
-        median_list = sorted(avg_list)
-        mid = len(avg_list) // 2
 
-        return Response(
-            {
-                "maximum": max(max_list),
-                "minimum": min(min_list),
-                "average": sum(avg_list) / len(avg_list),
-                "median": (median_list[mid] + median_list[~mid]) / 2,
-            },
-            status=status.HTTP_200_OK
-        )
+        return max(max_list)
+
+    def median_temperature(self):
+        """Compute the median temperature."""
+        median_list = sorted(self.avg_list)
+        mid = len(self.avg_list) // 2
+
+        return (median_list[mid] + median_list[~mid]) / 2
