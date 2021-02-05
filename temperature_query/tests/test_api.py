@@ -17,18 +17,11 @@ class QueryEndpointTestcase(BaseTestCase):
         correct_response_keys = [
             "maximum", "minimum", "average", "median"
             ]
-        city = "London"
-        number_of_days = 3
-
-        response = self.client.get(
-            f"/api/locations/{city}/days={number_of_days}",
-            format="application/json")
+        self.assertEqual(
+            self.response.status_code, status.HTTP_200_OK)
 
         self.assertEqual(
-            response.status_code, status.HTTP_200_OK)
-
-        self.assertEqual(
-            correct_response_keys, list(response.data.keys())
+            correct_response_keys, list(self.response.data.keys())
             )
 
     def test_invalid_city_name_response(self):
