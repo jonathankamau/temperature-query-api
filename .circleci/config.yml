@@ -16,7 +16,7 @@ jobs:
           command: ./manage.py test
           name: Test
       - coveralls/upload:
-          path_to_lcov: ./coverage/lcov/project.lcov
+          path_to_lcov: "./reports/coverage/lcov.info"
 
 workflows:
   main:
