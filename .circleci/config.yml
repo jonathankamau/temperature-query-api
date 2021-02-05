@@ -9,14 +9,11 @@ jobs:
     executor: python/default
     steps:
       - checkout
-      - python/load-cache
       - python/install-deps
-      - python/save-cache
       - run:
           name: Test
-          command: coverage run -m pytest
-      - coveralls/upload:
-          path_to_lcov: "./coverage/lcov/project.lcov"
+          command: coverage run --omit='*/site-packages/*' -m pytest && coveralls
+
 
 workflows:
   main:
