@@ -33,7 +33,7 @@ SECRET_KEY = ")^%mkbuj"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://temperature-query.us-east-1.elasticbeanstalk.com/']
 
 # Application definition
 
