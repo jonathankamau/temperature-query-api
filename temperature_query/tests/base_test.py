@@ -8,13 +8,6 @@ class BaseTestCase(APITestCase):
 
     def setUp(self):
         """Contains common mock test utilities."""
-        self.city = "London"
-        self.number_of_days = 3
-
-        self.response = self.client.get(
-            f"/api/locations/{self.city}/days={self.number_of_days}",
-            format="application/json")
-
         self.fake_temp_data = {
             "location": {
                 "name": "London",
