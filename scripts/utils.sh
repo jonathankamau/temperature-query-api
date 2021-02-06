@@ -21,15 +21,12 @@ warning() {
 }
 
 function addEnvFile() {
-    ENV_FILE=$ROOT_DIRECTORY/src/.env
+    ENV_FILE=$ROOT_DIRECTORY/.env
     warning "Adding .env file to episode tracker project directory"
     echo " "
 
-    # Add IP to allowed hosts
-    sed -i '' -e "s/^ALLOWED_HOSTS.*/ALLOWED_HOSTS = ['0.0.0.0']/" src/app/settings.py
-
     if [ ! -f "$ENV_FILE" ]; then
-          cat <<EOF >> "${ROOT_DIRECTORY}"/src/.env
+          cat <<EOF >> "${ROOT_DIRECTORY}"/.env
 API_KEY=${API_KEY}
 EOF
         success "lsEnvironment file has been created successfully"
