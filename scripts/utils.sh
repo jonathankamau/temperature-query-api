@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 DIRECTORY="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-ROOT_DIRECTORY=$(dirname $DIRECTORY)
+ROOT_DIRECTORY="$(dirname $DIRECTORY)"
 
 # colors
 red=$(tput setaf 1)
@@ -25,8 +25,11 @@ function addEnvFile() {
     warning "Adding .env file to episode tracker project directory"
     echo " "
 
+    # Add IP to allowed hosts
+    sed -i '' -e "s/^ALLOWED_HOSTS.*/ALLOWED_HOSTS = ['0.0.0.0']/" src/app/settings.py
+
     if [ ! -f "$ENV_FILE" ]; then
-          cat <<EOF >> ${ROOT_DIRECTORY}/src/.env
+          cat <<EOF >> "${ROOT_DIRECTORY}"/src/.env
 API_KEY=${API_KEY}
 EOF
         success "lsEnvironment file has been created successfully"
