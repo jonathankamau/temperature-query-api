@@ -44,9 +44,9 @@ class TemperatureQuery(APIView):
         if WEATHER_API_KEY is None:
             return Response(
                 {
-                    'Error':
-                    f"Could not find the Weather API Key! "
-                    f"Ensure the Weather API Key is available."
+                    "Error":
+                    "Could not find the Weather API Key! "
+                    "Ensure the Weather API Key is available."
                 },
                 status=status.HTTP_400_BAD_REQUEST)
 
