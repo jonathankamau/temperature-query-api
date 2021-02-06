@@ -16,9 +16,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-WEATHER_API_KEY = os.getenv("WEATHER_API_KEY", None)
+WEATHER_API_KEY = os.getenv("WEATHER_API_KEY") or None
 
-WEATHER_API_URL = os.getenv('WEATHER_API_URL', None)
+WEATHER_API_URL = os.getenv('WEATHER_API_URL') or None
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
