@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import requests
 
 from dotenv import load_dotenv
 
@@ -34,18 +33,7 @@ SECRET_KEY = ")^%mkbuj"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["0.0.0.0"]
-
-LOCAL_IP = None
-
-try:
-    LOCAL_IP = requests.get('http://169.254.169.254/latest/meta-data/local-ipv4', timeout=0.01).text
-    print(LOCAL_IP)
-except requests.exceptions.RequestException:
-    pass
-
-if LOCAL_IP:
-    ALLOWED_HOSTS.append(LOCAL_IP)
+ALLOWED_HOSTS = []
 
 # Application definition
 
