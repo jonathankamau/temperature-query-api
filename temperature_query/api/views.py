@@ -81,7 +81,7 @@ class TemperatureQuery(APIView):
         )
 
     def grab_weather_api_response(self, city, number_of_days):
-        """Get the response for given city and number of days from the weather API."""
+        """Get the response for from the weather API."""
         params = urllib.parse.urlencode(
             {
                 "key": WEATHER_API_KEY,
