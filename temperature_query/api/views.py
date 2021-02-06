@@ -1,14 +1,21 @@
 """API Viewsets."""
-import os
 import json
 import urllib
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
+from temperature_query.app.settings import WEATHER_API_KEY, WEATHER_API_URL
+from temperature_query.api.utils import ComputeTemperature
+
 
 class TemperatureQuery(APIView):
     """Endpoint to query for temperature details."""
+
+    def __init__(self):
+
+        self.temperature_details = []
+        self.compute = ComputeTemperature()
 
     def get(self, request, city, number_of_days):
         """
@@ -30,23 +37,23 @@ class TemperatureQuery(APIView):
                 {
                     'Error':
                     f"{number_of_days} is invalid! "
-                    "Please provide a valid digit for the number of days"
+                    "Please provide a valid number for the days"
                 },
                 status=status.HTTP_400_BAD_REQUEST)
 
-        params = urllib.parse.urlencode(
-            {
-                "key": os.getenv("WEATHER_API_KEY"),
-                "q": city,
-                "days": number_of_days
-            }
-        )
+        if WEATHER_API_KEY is None:
+            return Response(
+                {
+                    "Error":
+                    "Could not find the Weather API Key! "
+                    "Ensure the Weather API Key is available."
+                },
+                status=status.HTTP_400_BAD_REQUEST)
 
-        url = f"{os.getenv('WEATHER_API_URL')}?{params}"
-
-        temperature_details = []
         try:
-            temperature_details = json.load(urllib.request.urlopen(url))
+            self.temperature_details = self.grab_weather_api_response(
+                city, number_of_days)
+
         except urllib.error.HTTPError as e:
             if e.getcode() == 400:
                 return Response(
@@ -58,7 +65,7 @@ class TemperatureQuery(APIView):
                     },
                     status=status.HTTP_400_BAD_REQUEST)
 
-        if len(temperature_details) == 0:
+        if len(self.temperature_details) == 0:
 
             return Response(
                 {
@@ -66,46 +73,23 @@ class TemperatureQuery(APIView):
                     f"Could not retrieve temperature data for {city}"
                 },
                 status=status.HTTP_404_NOT_FOUND)
+
+        result = self.compute.calculate_result(self.temperature_details)
         return Response(
-            {
-                "maximum": self.max_temperature(temperature_details),
-                "minimum": self.min_temperature(temperature_details),
-                "average": self.average_temperature(temperature_details),
-                "median": self.median_temperature(),
-            },
+            result,
             status=status.HTTP_200_OK
         )
 
-    def average_temperature(self, temperature_details):
-        """Compute the average temperature."""
-        self.avg_list = [
-            temp["day"]["avgtemp_f"]
-            for temp in temperature_details["forecast"]["forecastday"]
-        ]
+    def grab_weather_api_response(self, city, number_of_days):
+        """Get the response for from the weather API."""
+        params = urllib.parse.urlencode(
+            {
+                "key": WEATHER_API_KEY,
+                "q": city,
+                "days": number_of_days
+            }
+        )
 
-        return sum(self.avg_list) / len(self.avg_list)
+        url = f"{WEATHER_API_URL}?{params}"
 
-    def min_temperature(self, temperature_details):
-        """Compute the minimum temperature."""
-        min_list = [
-            temp["day"]["mintemp_f"]
-            for temp in temperature_details["forecast"]["forecastday"]
-        ]
-
-        return min(min_list)
-
-    def max_temperature(self, temperature_details):
-        """Compute the maximum temperature."""
-        max_list = [
-            temp["day"]["maxtemp_f"]
-            for temp in temperature_details["forecast"]["forecastday"]
-        ]
-
-        return max(max_list)
-
-    def median_temperature(self):
-        """Compute the median temperature."""
-        median_list = sorted(self.avg_list)
-        mid = len(self.avg_list) // 2
-
-        return (median_list[mid] + median_list[~mid]) / 2
+        return json.load(urllib.request.urlopen(url))
