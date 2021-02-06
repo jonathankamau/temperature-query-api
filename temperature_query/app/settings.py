@@ -16,6 +16,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+WEATHER_API_KEY = os.getenv("WEATHER_API_KEY", None)
+
+WEATHER_API_URL = os.getenv('WEATHER_API_URL', None)
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -30,7 +34,6 @@ SECRET_KEY = ")^%mkbuj"
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -110,7 +113,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 REST_FRAMEWORK = {
-    "EXCEPTION_HANDLER": "temperature_query.api.utils.custom_exception_handler"
+    "EXCEPTION_HANDLER":
+    "temperature_query.api.utils.exception.custom_exception_handler"
 }
 
 # Internationalization
