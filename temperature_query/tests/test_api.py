@@ -101,9 +101,8 @@ class QueryEndpointTestcase(BaseTestCase):
             format="application/json")
 
         expected_message = {
-                    'Error':
-                    f"Could not find the Weather API Key! "
-                    f"Ensure the Weather API Key is available."
+                    "Error": "Could not find the Weather API Key! "
+                    "Ensure the Weather API Key is available."
                 }
 
         self.assertEqual(
