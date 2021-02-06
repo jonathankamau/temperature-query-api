@@ -5,8 +5,8 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from temperature_query.app.settings import WEATHER_API_KEY, WEATHER_API_URL
-from temperature_query.api.utils import ComputeTemperature
+from src.app.settings import WEATHER_API_KEY, WEATHER_API_URL
+from src.api.utils import ComputeTemperature
 
 
 class TemperatureQuery(APIView):

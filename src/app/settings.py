@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    "temperature_query.api.apps.ApiConfig",
 ]
 
 MIDDLEWARE = [
@@ -58,7 +57,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "temperature_query.app.urls"
+ROOT_URLCONF = "src.app.urls"
 
 TEMPLATES = [
     {
@@ -76,7 +75,7 @@ TEMPLATES = [
     }
 ]
 
-WSGI_APPLICATION = "temperature_query.app.wsgi.application"
+WSGI_APPLICATION = "src.app.wsgi.application"
 
 
 # Database
@@ -114,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 REST_FRAMEWORK = {
     "EXCEPTION_HANDLER":
-    "temperature_query.api.utils.exception.custom_exception_handler"
+    "src.api.utils.exception.custom_exception_handler"
 }
 
 # Internationalization

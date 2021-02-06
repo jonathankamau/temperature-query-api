@@ -1,4 +1,4 @@
-from temperature_query.api.utils import ResultSerializer
+from src.api.utils import ResultSerializer
 
 
 class ComputeTemperature:

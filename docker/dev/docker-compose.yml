@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  nginx:
+    image: nginx
+    container_name: nginx_server
+    ports:
+      - "80:80"
+    volumes:
+      - .:/code
+      - ./nginx:/etc/nginx/nginx.conf.d
+    depends_on:
+      - api
+    restart: "on-failure"
+  api:
+    build:
+      context: ../../
+      dockerfile: docker/dev/Dockerfile
+    environment:
+      DJANGO_SETTINGS_MODULE: src.app.settings
+      WEATHER_API_KEY: ${WEATHER_API_KEY}
+      WEATHER_API_URL: ${WEATHER_API_URL}
+    command: /dev.sh
+    ports:
+      - "8000:8000"
+    stdin_open: true
+    tty: true

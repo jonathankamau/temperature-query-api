@@ -7,7 +7,7 @@ import sys
 def main():
     """Primary executable method for the app."""
     os.environ.setdefault("DJANGO_SETTINGS_MODULE",
-                          "temperature_query.app.settings")
+                          "src.app.settings")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

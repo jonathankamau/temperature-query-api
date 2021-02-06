@@ -1,6 +1,6 @@
 """API URLS file."""
 from django.urls import re_path
-from temperature_query.api.views import TemperatureQuery
+from src.api.views import TemperatureQuery
 
 urlpatterns = [
     re_path(

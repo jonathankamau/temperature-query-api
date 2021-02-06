@@ -1,6 +1,6 @@
 """Temperature calculations testcases."""
-from temperature_query.tests.base_test import BaseTestCase
-from temperature_query.api.utils import ComputeTemperature
+from src.tests.base_test import BaseTestCase
+from src.api.utils import ComputeTemperature
 
 
 class TempCalculations(BaseTestCase):

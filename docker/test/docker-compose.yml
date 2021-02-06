@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  test:
+    build:
+      context: ../../
+      dockerfile: docker/test/Dockerfile
+    environment:
+      DJANGO_SETTINGS_MODULE: src.app.settings
+      WEATHER_API_KEY: ${WEATHER_API_KEY}
+      WEATHER_API_URL: ${WEATHER_API_URL}
+      COVERALLS_REPO_TOKEN: ${COVERALLS_REPO_TOKEN}
+    command: /test.sh
+    stdin_open: true
+    tty: true

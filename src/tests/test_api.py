@@ -6,7 +6,7 @@
 from unittest.mock import patch
 from rest_framework import status
 
-from temperature_query.tests.base_test import BaseTestCase
+from src.tests.base_test import BaseTestCase
 
 
 class QueryEndpointTestcase(BaseTestCase):
@@ -90,7 +90,7 @@ class QueryEndpointTestcase(BaseTestCase):
 
         self.assertEqual(response.data, expected_message)
 
-    @patch("temperature_query.api.views.WEATHER_API_KEY", None)
+    @patch("src.api.views.WEATHER_API_KEY", None)
     def test_weather_api_key_not_available(self):
 
         city = "London"
