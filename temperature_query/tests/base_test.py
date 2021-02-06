@@ -15,7 +15,7 @@ class BaseTestCase(APITestCase):
             f"/api/locations/{self.city}/days={self.number_of_days}",
             format="application/json")
 
-        self.mock_temp_data = {
+        self.fake_temp_data = {
             "location": {
                 "name": "London",
                 "region": "City of London, Greater London",
