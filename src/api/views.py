@@ -5,7 +5,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from src.app.settings import WEATHER_API_KEY, WEATHER_API_URL
+from src.app.settings import WEATHER_API_KEY
 from src.api.utils import ComputeTemperature
 
 
@@ -41,6 +41,14 @@ class TemperatureQuery(APIView):
                 },
                 status=status.HTTP_400_BAD_REQUEST)
 
+        if int(number_of_days) < 1 or int(number_of_days) > 5:
+            return Response(
+                {
+                    "Error":
+                    "Please provide a number_of_days value within the range of 1 to 5"
+                },
+                status=status.HTTP_400_BAD_REQUEST)
+
         if WEATHER_API_KEY is None:
             return Response(
                 {
@@ -65,15 +73,6 @@ class TemperatureQuery(APIView):
                     },
                     status=status.HTTP_400_BAD_REQUEST)
 
-        if len(self.temperature_details) == 0:
-
-            return Response(
-                {
-                    "Error":
-                    f"Could not retrieve temperature data for {city}"
-                },
-                status=status.HTTP_404_NOT_FOUND)
-
         result = self.compute.calculate_result(self.temperature_details)
         return Response(
             result,
@@ -82,6 +81,9 @@ class TemperatureQuery(APIView):
 
     def grab_weather_api_response(self, city, number_of_days):
         """Get the response for from the weather API."""
+
+        weather_api_url = "https://api.weatherapi.com/v1/forecast.json"
+
         params = urllib.parse.urlencode(
             {
                 "key": WEATHER_API_KEY,
@@ -90,6 +92,6 @@ class TemperatureQuery(APIView):
             }
         )
 
-        url = f"{WEATHER_API_URL}?{params}"
+        url = f"{weather_api_url}?{params}"
 
         return json.load(urllib.request.urlopen(url))

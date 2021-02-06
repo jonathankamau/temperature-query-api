@@ -19,7 +19,6 @@ services:
     environment:
       DJANGO_SETTINGS_MODULE: src.app.settings
       WEATHER_API_KEY: ${WEATHER_API_KEY}
-      WEATHER_API_URL: ${WEATHER_API_URL}
     command: /dev.sh
     ports:
       - "8000:8000"

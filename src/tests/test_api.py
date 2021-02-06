@@ -110,3 +110,43 @@ class QueryEndpointTestcase(BaseTestCase):
 
         self.assertEqual(
             response.data, expected_message)
+
+    def test_days_less_than_one(self):
+
+        city = "London"
+        number_of_days = 0
+
+        response = self.client.get(
+            f"/api/locations/{city}/days={number_of_days}",
+            format="application/json")
+
+        expected_message = {
+            "Error":
+            "Please provide a number_of_days value within the range of 1 to 5"
+                }
+
+        self.assertEqual(
+            response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        self.assertEqual(
+            response.data, expected_message)
+
+    def test_days_greater_than_five(self):
+
+        city = "London"
+        number_of_days = 32
+
+        response = self.client.get(
+            f"/api/locations/{city}/days={number_of_days}",
+            format="application/json")
+
+        expected_message = {
+                    "Error":
+                    "Please provide a number_of_days value within the range of 1 to 5"
+                }
+
+        self.assertEqual(
+            response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        self.assertEqual(
+            response.data, expected_message)
