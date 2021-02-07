@@ -17,23 +17,27 @@ class TemperatureQuery(APIView):
         self.temperature_details = []
         self.compute = ComputeTemperature()
 
-    def get(self, request, city, number_of_days):
+    def get(self, request, **kwargs):
         """
         Retrieve temperature data from weather API.
 
         return the min, max, average and median temperature data
         for that period.
         """
+        city = kwargs.get('city')
+        number_of_days = kwargs.get('number_of_days')
+        response = None
+
         if not city.replace(" ", "").isalpha():
-            return Response(
+            response = Response(
                 {
                     "Error":
                     f"{city} is invalid! Please provide a valid city name"
                 },
                 status=status.HTTP_400_BAD_REQUEST)
 
-        if not number_of_days.isnumeric():
-            return Response(
+        elif not number_of_days.isnumeric():
+            response = Response(
                 {
                     'Error':
                     f"{number_of_days} is invalid! "
@@ -41,47 +45,49 @@ class TemperatureQuery(APIView):
                 },
                 status=status.HTTP_400_BAD_REQUEST)
 
-        if int(number_of_days) < 1 or int(number_of_days) > 5:
-            return Response(
+        elif int(number_of_days) < 1 or int(number_of_days) > 5:
+            response = Response(
                 {
                     "Error":
-                    "Please provide a number_of_days value within the range of 1 to 5"
+                    "Please provide a number_of_days value "
+                    "within the range of 1 to 5"
                 },
                 status=status.HTTP_400_BAD_REQUEST)
 
-        if WEATHER_API_KEY is None:
-            return Response(
+        elif WEATHER_API_KEY is None:
+            response = Response(
                 {
                     "Error":
                     "Could not find the Weather API Key! "
                     "Ensure the Weather API Key is available."
                 },
                 status=status.HTTP_400_BAD_REQUEST)
+        else:
+            try:
+                self.temperature_details = self.grab_weather_api_response(
+                    city, number_of_days)
 
-        try:
-            self.temperature_details = self.grab_weather_api_response(
-                city, number_of_days)
+                result = self.compute.calculate_result(
+                    self.temperature_details)
 
-        except urllib.error.HTTPError as e:
-            if e.getcode() == 400:
-                return Response(
-                    {
-                        "Error":
-                        f"Could not get temperature details for {city}. "
-                        f"Please provide a valid city name or check the "
-                        f"name format and try again."
-                    },
-                    status=status.HTTP_400_BAD_REQUEST)
-
-        result = self.compute.calculate_result(self.temperature_details)
-        return Response(
-            result,
-            status=status.HTTP_200_OK
-        )
+                response = Response(
+                    result,
+                    status=status.HTTP_200_OK
+                )
+            except urllib.error.HTTPError as e:
+                if e.getcode() == 400:
+                    response = Response(
+                        {
+                            "Error":
+                            f"Could not get temperature details for {city}. "
+                            f"Please provide a valid city name or check the "
+                            f"name format and try again."
+                        },
+                        status=status.HTTP_400_BAD_REQUEST)
+        return response
 
     def grab_weather_api_response(self, city, number_of_days):
         """Get the response for from the weather API."""
-
         weather_api_url = "https://api.weatherapi.com/v1/forecast.json"
 
         params = urllib.parse.urlencode(
