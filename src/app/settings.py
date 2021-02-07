@@ -31,9 +31,11 @@ SECRET_KEY = ")^%mkbuj"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["172.31.17.252", "52.55.239.115"
-                 "awseb-AWSEB-1R1OETJLHMD82-800785331."
-                 "us-east-1.elb.amazonaws.com"]
+ALLOWED_HOSTS = [
+    "172.31.17.252",
+    "52.55.239.115",
+    "awseb-awseb-1r1oetjlhmd82-800785331.us-east-1.elb.amazonaws.com"
+    ]
 
 # Application definition
 
