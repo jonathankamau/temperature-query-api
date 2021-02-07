@@ -44,7 +44,8 @@ class BaseTestCase(APITestCase):
                             "daily_chance_of_snow": "0",
                             "condition": {
                                 "text": "Partly cloudy",
-                                "icon": "//cdn.weatherapi.com/weather/64x64/day/116.png",
+                                "icon": "//cdn.weatherapi.com/"
+                                "weather/64x64/day/116.png",
                                 "code": 1003
                             },
                             "uv": 1
@@ -81,7 +82,8 @@ class BaseTestCase(APITestCase):
                             "daily_chance_of_snow": "0",
                             "condition": {
                                 "text": "Moderate rain",
-                                "icon": "//cdn.weatherapi.com/weather/64x64/day/302.png",
+                                "icon": "//cdn.weatherapi.com/"
+                                "weather/64x64/day/302.png",
                                 "code": 1189
                             },
                             "uv": 1
@@ -118,7 +120,8 @@ class BaseTestCase(APITestCase):
                             "daily_chance_of_snow": "73",
                             "condition": {
                                 "text": "Heavy snow",
-                                "icon": "//cdn.weatherapi.com/weather/64x64/day/338.png",
+                                "icon": "//cdn.weatherapi.com/"
+                                "weather/64x64/day/338.png",
                                 "code": 1225
                             },
                             "uv": 1
@@ -155,7 +158,8 @@ class BaseTestCase(APITestCase):
                             "daily_chance_of_snow": "73",
                             "condition": {
                                 "text": "Heavy snow",
-                                "icon": "//cdn.weatherapi.com/weather/64x64/day/338.png",
+                                "icon": "//cdn.weatherapi.com/"
+                                "weather/64x64/day/338.png",
                                 "code": 1225
                             },
                             "uv": 1
@@ -192,7 +196,8 @@ class BaseTestCase(APITestCase):
                             "daily_chance_of_snow": "73",
                             "condition": {
                                 "text": "Heavy snow",
-                                "icon": "//cdn.weatherapi.com/weather/64x64/day/338.png",
+                                "icon": "//cdn.weatherapi.com/"
+                                "weather/64x64/day/338.png",
                                 "code": 1225
                             },
                             "uv": 1
