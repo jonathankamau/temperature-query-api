@@ -31,8 +31,9 @@ SECRET_KEY = ")^%mkbuj"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1", "172.31.17.252",
-                 "temperature-query.us-east-1.elasticbeanstalk.com"]
+ALLOWED_HOSTS = ["172.31.17.252",
+                 "awseb-AWSEB-1R1OETJLHMD82-800785331."
+                 "us-east-1.elb.amazonaws.com"]
 
 # Application definition
 
