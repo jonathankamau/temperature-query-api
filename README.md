@@ -9,10 +9,10 @@
 
 Temperature Query is an API tool that allows users to be able to retrieve the maximum, minimum, average and median temperature, in fahrenheit, for a given city and period of time.
 ## API
--  This API contains an endpoint that allows users to retrieve temperature data.
--  The user gets to provide two input parameters, the `city` name and the `number of days` for which they want to retrieve the information.
--  The temperature data gets called from a third party weather API then from the response object only the maximum, minimum, average and median temperature data for each day gets retrieved.
--  Using list comprehensions, the daily temperature gets appended to list data structures and the maximum, minimum, average and median temperature for the days given gets computed.
+-   This API contains an endpoint that allows users to retrieve temperature data.
+-   The user gets to provide two input parameters, the `city` name and the `number of days` for which they want to retrieve the information.
+-   The temperature data gets called from a third party weather API then from the response object only the maximum, minimum, average and median temperature data for each day gets retrieved.
+-   Using list comprehensions, the daily temperature gets appended to list data structures and the maximum, minimum, average and median temperature for the days given gets computed.
 
 ### Available Endpoint
 |HTTP Method   | Endpoint  | Usage |
@@ -20,14 +20,14 @@ Temperature Query is an API tool that allows users to be able to retrieve the ma
 |GET| `/api/locations/{city}/?days={number_of_days}` | Get the maximum, minimum, average and median temperature, in fahrenheit, for a given city and period of time|
 
 ## Getting started with the API
--  The project was built using python 3.9 and the [Django framework](https://www.djangoproject.com/). The API utilizes the [Django Rest Framework](https://www.django-rest-framework.org/) toolkit.
--  To run this API on your local machine, you will need to clone this project. You can do so using the following command which you can copy and paste on your terminal:
+-   The project was built using python 3.9 and the [Django framework](https://www.djangoproject.com/). The API utilizes the [Django Rest Framework](https://www.django-rest-framework.org/) toolkit.
+-   To run this API on your local machine, you will need to clone this project. You can do so using the following command which you can copy and paste on your terminal:
 
 ```
  $ git clone https://github.com/jonathankamau/temperature-query-api.git
  ```
 
--  If you would like to test with a deployed version, you can use the following root URL:
+-   If you would like to test with a deployed version, you can use the following root URL:
 
 ```
 https://d2p54l8woftw5f.cloudfront.net/
@@ -41,13 +41,12 @@ https://d2p54l8woftw5f.cloudfront.net/api/locations/{city}/?days={number_of_days
 
 ### Local Environment Installation
 
--  The project
 In order to be able to successfully run this project on your local machine, ensure you have the following prerequisites
 #### Prerequisites
--  Python 3
--  Docker
--  A Virtual environment (if running manually) based on python 3 within which you will run the project.
--  A Weather API token that you can grab from the [weatherapi](https://www.weatherapi.com/). You will need to create an account in order to obtain the token. After getting the token, you can add it to your environment variables using the variable key [here](/env.example).
+-   Python 3
+-   Docker
+-   A Virtual environment (if running manually) based on python 3 within which you will run the project.
+-   A Weather API token that you can grab from the [weatherapi](https://www.weatherapi.com/). You will need to create an account in order to obtain the token. After getting the token, you can add it to your environment variables using the variable key [here](/env.example).
 
 ### Running using Docker
 -  Ensure you have Docker installed. You can find information [here](https://www.docker.com/get-started) on how to install Docker on your machine.
