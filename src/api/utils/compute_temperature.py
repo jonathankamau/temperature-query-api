@@ -1,4 +1,5 @@
 from src.api.utils import ResultSerializer
+from collections import defaultdict
 
 
 class ComputeTemperature:
@@ -6,28 +7,22 @@ class ComputeTemperature:
 
     def calculate_result(self, temperature_data):
         """Compute the average, min, max and median temperatures."""
-        avg_list = [
-            temp["day"]["avgtemp_f"]
-            for temp in temperature_data["forecast"]["forecastday"]
-        ]
+        temp_values = defaultdict(list)
 
-        min_list = [
-            temp["day"]["mintemp_f"]
-            for temp in temperature_data["forecast"]["forecastday"]
-        ]
+        for day in temperature_data["forecast"]["forecastday"]:
 
-        max_list = [
-            temp["day"]["maxtemp_f"]
-            for temp in temperature_data["forecast"]["forecastday"]
-        ]
+            temp_values['avg_list'].append(day["day"]["avgtemp_f"])
+            temp_values['min_list'].append(day["day"]["mintemp_f"])
+            temp_values['max_list'].append(day["day"]["maxtemp_f"])
 
-        median_list = sorted(avg_list)
-        mid = len(avg_list) // 2
+        median_list = sorted(temp_values['avg_list'])
+        mid = len(temp_values['avg_list']) // 2
 
         result = {
-            "maximum": round(max(max_list), 1),
-            "minimum": round(min(min_list), 1),
-            "average": round(sum(avg_list) / len(avg_list), 1),
+            "maximum": round(max(temp_values['max_list']), 1),
+            "minimum": round(min(temp_values['min_list']), 1),
+            "average": round(sum(temp_values['avg_list']) /
+                             len(temp_values['avg_list']), 1),
             "median": round(
                 ((median_list[mid] + median_list[~mid]) / 2), 1),
 
