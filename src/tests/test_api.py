@@ -92,7 +92,7 @@ class QueryEndpointTestcase(BaseTestCase):
 
     @patch("src.api.views.WEATHER_API_KEY", None)
     def test_weather_api_key_not_available(self):
-
+        """Test for when the weather API key isn't provided."""
         city = "London"
         number_of_days = 3
 
@@ -112,6 +112,7 @@ class QueryEndpointTestcase(BaseTestCase):
             response.data, expected_message)
 
     def test_days_less_than_one(self):
+        """Test if the number of days provided is less than 1."""
 
         city = "London"
         number_of_days = 0
@@ -132,6 +133,7 @@ class QueryEndpointTestcase(BaseTestCase):
             response.data, expected_message)
 
     def test_days_greater_than_five(self):
+        """Test if number of days is greater than 5."""
 
         city = "London"
         number_of_days = 32
@@ -142,7 +144,8 @@ class QueryEndpointTestcase(BaseTestCase):
 
         expected_message = {
                     "Error":
-                    "Please provide a number_of_days value within the range of 1 to 5"
+                    "Please provide a number_of_days value "
+                    "within the range of 1 to 5"
                 }
 
         self.assertEqual(
