@@ -1,3 +1,4 @@
+"""Calculate the  maximum, minimum, average and median temperatures."""
 from src.api.utils import ResultSerializer
 
 
