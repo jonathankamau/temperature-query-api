@@ -14,6 +14,16 @@ Temperature Query is an API tool that allows users to be able to retrieve the ma
 -   The temperature data gets called from a third party weather API then from the response object only the maximum, minimum, average and median temperature data for each day gets retrieved.
 -   Using list comprehensions, the daily temperature gets appended to list data structures and the maximum, minimum, average and median temperature for the days given gets computed.
 
+## Notes on the  project file structure
+
+-   To easily navigate through the project structure, I have attached a map of the structure [here](FileFolderStructure.md).
+-   The entry point to run the app is [manage.py](manage.py).
+-   The Django app and api files are within the [src](src) folder.
+-   The [app](src/app) folder contains the core Django executable files and settings file.
+-   The [api](src/api) folder contains the API's view class, urlpatterns, and a [utils](src/api/utils) folder that has files containing classes and methods needed by the api view.
+-  The [tests](src/tests) folder contains the testcase files for the unittests for the API.
+
+
 ### Available Endpoint
 |HTTP Method   | Endpoint  | Usage |
 | ------------- | --------- | --------------- |
