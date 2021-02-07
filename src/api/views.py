@@ -1,19 +1,19 @@
 """API Viewsets."""
-import json
 import urllib
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from src.app.settings import WEATHER_API_KEY
-from src.api.utils import ComputeTemperature, ErrorResponses
+from src.api.utils import (ComputeTemperature, ErrorResponses,
+                           grab_weather_api_response)
 
 
 class TemperatureQuery(APIView):
     """Endpoint to query for temperature details."""
 
     def __init__(self):
-
+        """Initialize variables."""
         self.temperature_details = []
         self.compute = ComputeTemperature()
         self.error_response = ErrorResponses()
@@ -46,7 +46,7 @@ class TemperatureQuery(APIView):
 
         else:
             try:
-                self.temperature_details = self.grab_weather_api_response(
+                self.temperature_details = grab_weather_api_response(
                     WEATHER_API_KEY, city, number_of_days)
 
                 result = self.compute.calculate_result(
@@ -61,19 +61,3 @@ class TemperatureQuery(APIView):
                     response = self.error_response.weatherapi_error(city)
 
         return response
-
-    def grab_weather_api_response(self, WEATHER_API_KEY, city, number_of_days):
-        """Get the response for from the weather API."""
-        weather_api_url = "https://api.weatherapi.com/v1/forecast.json"
-
-        params = urllib.parse.urlencode(
-            {
-                "key": WEATHER_API_KEY,
-                "q": city,
-                "days": number_of_days
-            }
-        )
-
-        url = f"{weather_api_url}?{params}"
-
-        return json.load(urllib.request.urlopen(url))
