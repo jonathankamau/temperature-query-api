@@ -21,10 +21,11 @@ Temperature Query is an API tool that allows users to be able to retrieve the ma
 
 ## Getting started with the API
 -   The project was built using python 3.9 and the [Django framework](https://www.djangoproject.com/). The API utilizes the [Django Rest Framework](https://www.django-rest-framework.org/) toolkit.
+
 -   To run this API on your local machine, you will need to clone this project. You can do so using the following command which you can copy and paste on your terminal:
 
     ```
-    $ git clone https://github.com/jonathankamau/temperature-query-api.git
+    git clone https://github.com/jonathankamau/temperature-query-api.git
     ```
 
 -   If you would like to test with a deployed version, you can use the following root URL:
@@ -33,7 +34,7 @@ Temperature Query is an API tool that allows users to be able to retrieve the ma
     https://d2p54l8woftw5f.cloudfront.net/
     ```
 
-- And run the endpoint with it as follows:
+-   And run the endpoint with it as follows:
 
     ```
     https://d2p54l8woftw5f.cloudfront.net/api/locations/{city}/?days={number_of_days}
@@ -56,7 +57,7 @@ In order to be able to successfully run this project on your local machine, ensu
 -   While still in the source folder you can run the following command to run the tests in the test environment:
 
     ```
-    $ make test
+    make test
     ```
 
 #### Running the app
@@ -64,7 +65,7 @@ In order to be able to successfully run this project on your local machine, ensu
 -   While still in the source folder you can run the following command to run the app in the app environment:
 
     ```
-    $ make dev
+    make dev
     ```
 
 ### Running Manually
@@ -72,18 +73,18 @@ If you are running the project manually you will need to do the following:
 -   Ensure you have setup a virtual environment and you have navigated to that environment on  your terminal.
 -   Install the requirements using this command:
     ```
-    $ pip install -r requirements.txt
+    pip install -r requirements.txt
     ```
-#### Running tests
+#### Running tests manually
 -   You can then run the tests either using the following command:
 
     ```
-    $ pytest
+    pytest
     ```
 
 -   You can use the following command as well:
     ```
-    $ python manage.py runserver
+    python manage.py runserver
     ```
 
 ## Deployment 🚀
