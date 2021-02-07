@@ -8,7 +8,7 @@
 # Temperature Query API
 
 Temperature Query is an API tool that allows users to be able to retrieve the maximum, minimum, average and median temperature, in fahrenheit, for a given city and period of time.
-## API
+## Notes on the API
 -   This API contains an endpoint that allows users to retrieve temperature data.
 -   The user gets to provide two input parameters, the `city` name and the `number of days` for which they want to retrieve the information.
 -   The temperature data gets called from a third party weather API then from the response object only the maximum, minimum, average and median temperature data for each day gets retrieved.
