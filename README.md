@@ -94,6 +94,13 @@ If you are running the project manually you will need to do the following:
 
 -   You can use the following command as well:
     ```
+    python manage.py test
+    ```
+#### Running the app manually
+
+-   While still in the source folder you can run the following command to run the app:
+
+    ```
     python manage.py runserver
     ```
 
