@@ -26,7 +26,7 @@ class ErrorResponses:
                 },
                 status=status.HTTP_400_BAD_REQUEST)
 
-    def days_out_of_range(self, number_of_days):
+    def days_out_of_range(self):
         """Error to be returned if day provided is out of range."""
         return Response(
                 {
