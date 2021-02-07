@@ -38,8 +38,7 @@ class TemperatureQuery(APIView):
                 number_of_days)
 
         elif int(number_of_days) < 1 or int(number_of_days) > 5:
-            response = self.error_response.days_out_of_range(
-                number_of_days)
+            response = self.error_response.days_out_of_range()
 
         elif WEATHER_API_KEY is None:
             response = self.error_response.missing_weatherapi_key()
