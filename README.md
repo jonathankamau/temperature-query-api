@@ -56,7 +56,7 @@ In order to be able to successfully run this project on your local machine, ensu
 #### Prerequisites
 -   Python 3
 -   Docker
--   A Virtual environment (if running manually) based on python 3 within which you will run the project.
+-   A Virtual environment (if running manually) based on python 3 within which you will run the project. To set it up, you can follow the guidelines outlined [here](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#installing-virtualenv)
 -   A Weather API token that you can grab from the [weatherapi](https://www.weatherapi.com/). You will need to create an account in order to obtain the token. After getting the token, you can add it to your environment variables using the variable key [here](/env.example).
 
 ### Running using Docker
@@ -80,7 +80,7 @@ In order to be able to successfully run this project on your local machine, ensu
 
 ### Running Manually
 If you are running the project manually you will need to do the following:
--   Ensure you have setup a virtual environment and you have navigated to that environment on  your terminal.
+-   Ensure you have setup a virtual environment following the steps [here](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#installing-virtualenv) and you have navigated to that environment on  your terminal.
 -   Install the requirements using this command:
     ```
     pip install -r requirements.txt
