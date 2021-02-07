@@ -14,6 +14,15 @@ Temperature Query is an API tool that allows users to be able to retrieve the ma
 -   The temperature data gets called from a third party weather API then from the response object only the maximum, minimum, average and median temperature data for each day gets retrieved.
 -   Using list comprehensions, the daily temperature gets appended to list data structures and the maximum, minimum, average and median temperature for the days given gets computed.
 
+## Notes on the  project file structure
+
+-   To easily navigate through the project structure, I have attached a map of the structure [here](FileFolderStructure.md).
+-   The entry point to run the app is [manage.py](manage.py).
+-   The Django app and api files are within the [src](src) folder.
+-   The [app](src/app) folder contains the core Django executable files and settings file.
+-   The [api](src/api) folder contains the API's view class, urlpatterns, and a [utils](src/api/utils) folder that has files containing classes and methods needed by the api view.
+-   The [tests](src/tests) folder contains the testcase files for the unittests for the API.
+
 ### Available Endpoint
 |HTTP Method   | Endpoint  | Usage |
 | ------------- | --------- | --------------- |
@@ -46,7 +55,7 @@ In order to be able to successfully run this project on your local machine, ensu
 #### Prerequisites
 -   Python 3
 -   Docker
--   A Virtual environment (if running manually) based on python 3 within which you will run the project.
+-   A Virtual environment (if running manually) based on python 3 within which you will run the project. To set it up, you can follow the guidelines outlined [here](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#installing-virtualenv)
 -   A Weather API token that you can grab from the [weatherapi](https://www.weatherapi.com/). You will need to create an account in order to obtain the token. After getting the token, you can add it to your environment variables using the variable key [here](/env.example).
 
 ### Running using Docker
@@ -70,7 +79,8 @@ In order to be able to successfully run this project on your local machine, ensu
 
 ### Running Manually
 If you are running the project manually you will need to do the following:
--   Ensure you have setup a virtual environment and you have navigated to that environment on  your terminal.
+-   Ensure you have setup a virtual environment following the steps [here](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#installing-virtualenv) and you have navigated to that environment on  your terminal.
+
 -   Install the requirements using this command:
     ```
     pip install -r requirements.txt
