@@ -42,7 +42,7 @@ Temperature Query is an API tool that allows users to be able to retrieve the ma
 ### Available Endpoint
 |HTTP Method   | Endpoint  | Usage |
 | ------------- | --------- | --------------- |
-|GET| `/api/locations/{city}/?days={number_of_days}` | Get the maximum, minimum, average and median temperature, in fahrenheit, for a given city and period of time|
+|GET| `/api/locations/{city}/days={number_of_days}` | Get the maximum, minimum, average and median temperature, in fahrenheit, for a given city and period of time|
 
 ## Getting started with the API
 -   The project was built using python 3.9 and the [Django framework](https://www.djangoproject.com/). The API utilizes the [Django Rest Framework](https://www.django-rest-framework.org/) toolkit.
@@ -60,7 +60,7 @@ Temperature Query is an API tool that allows users to be able to retrieve the ma
 -   And run the endpoint with it as follows:
 
     ```
-    https://d2p54l8woftw5f.cloudfront.net/api/locations/{city}/?days={number_of_days}
+    https://d2p54l8woftw5f.cloudfront.net/api/locations/{city}/days={number_of_days}
     ```
 
 ### Local Environment Installation
