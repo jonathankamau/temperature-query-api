@@ -29,7 +29,7 @@ Temperature Query is an API tool that allows users to be able to retrieve the ma
     }
     ```
 
--   **NOTE** The third party API, where the weather data gets retrieved from, has limitations on the maximum number of days one can retrieve data depending on the plan one uses. Because of this, on my API limitation I have set a max limit of 5 days for better accuracy.
+-   **NOTE:** The third party API, where the weather data gets retrieved from, has limitations on the maximum number of days one can retrieve data depending on the plan one uses. Because of this, on my API limitation I have set a max limit of 5 days for better accuracy.
 ## Notes on the  project file structure
 
 -   To easily navigate through the project structure, I have attached a map of the structure [here](FileFolderStructure.md).
