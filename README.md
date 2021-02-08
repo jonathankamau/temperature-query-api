@@ -13,7 +13,7 @@ Temperature Query is an API tool that allows users to be able to retrieve the ma
 -   The user gets to provide two input parameters, the `city` name and the `number of days` for which they want to retrieve the information.
 -   The temperature data gets called from a third party weather API then from the response object only the maximum, minimum, average and median temperature data for each day gets retrieved.
 -   Using list comprehensions, the daily temperature gets appended to list data structures and the maximum, minimum, average and median temperature for the days given gets computed.
-- The response object that is then  returned will be in the following format:
+-   The response object that is then  returned will be in the following format:
 
     ```
     {
@@ -29,7 +29,7 @@ Temperature Query is an API tool that allows users to be able to retrieve the ma
     }
     ```
 
-- **NOTE** The third party API, where the weather data gets retrieved from, has limitations on the maximum number of days one can retrieve data depending on the plan one uses. Because of this, on my API limitation I have set a max limit of 5 days for better accuracy.
+-   **NOTE** The third party API, where the weather data gets retrieved from, has limitations on the maximum number of days one can retrieve data depending on the plan one uses. Because of this, on my API limitation I have set a max limit of 5 days for better accuracy.
 ## Notes on the  project file structure
 
 -   To easily navigate through the project structure, I have attached a map of the structure [here](FileFolderStructure.md).
@@ -54,7 +54,6 @@ Temperature Query is an API tool that allows users to be able to retrieve the ma
     ```
 
 -   If you would like to test with a deployed version, you can use the following root URL:
-
 
     [https://d2p54l8woftw5f.cloudfront.net/](https://d2p54l8woftw5f.cloudfront.net/)
 
