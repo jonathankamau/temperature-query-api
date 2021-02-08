@@ -1,0 +1,153 @@
+<p><a target="_blank" href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a>
+<a target="_blank" href="https://app.codacy.com/gh/jonathankamau/temperature-query-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jonathankamau/temperature-query-api&amp;utm_campaign=Badge_Grade_Settings"><img alt="Codacy Badge" src="https://api.codacy.com/project/badge/Grade/aa140ad57ff6445c9c7d9c41a8d0eea2" /></a>
+<a target="_blank" href="https://app.circleci.com/pipelines/github/jonathankamau/temperature-query-api"><img alt="CircleCi" src="https://circleci.com/gh/jonathankamau/temperature-query-api.svg?style=svg" /></a>
+<a target="_blank" href="https://coveralls.io/github/jonathankamau/temperature-query-api?branch=main"><img alt="Coverage Status" src="https://coveralls.io/repos/github/jonathankamau/temperature-query-api/badge.svg?branch=main" /></a>
+<a target="_blank" href="https://codeclimate.com/github/jonathankamau/temperature-query-api/maintainability"><img alt="Maintainability" src="https://api.codeclimate.com/v1/badges/1a97c6de621dc9d1a0e2/maintainability" /></a>
+<img alt="CircleCI" src="https://img.shields.io/circleci/build/github/jonathankamau/temperature-query-api" />
+<a target="_blank" href="https://img.shields.io/badge/Python%20Version-3.9-blue"><img alt="PyPI pyversions" src="https://img.shields.io/badge/Python%20Version-3.9-blue" /></a></p>
+<h1>Temperature Query API</h1>
+<p>Temperature Query is an API tool that allows users to be able to retrieve the maximum, minimum, average and median temperature, in fahrenheit, for a given city and period of time.</p>
+<h2>Notes on the API</h2>
+<ul>
+<li>This API contains an endpoint that allows users to retrieve temperature data.</li>
+<li>The user gets to provide two input parameters, the <code>city</code> name and the <code>number of days</code> for which they want to retrieve the information.</li>
+<li>The temperature data gets called from a third party weather API then from the response object only the maximum, minimum, average and median temperature data for each day gets retrieved.</li>
+<li>Using list comprehensions, the daily temperature gets appended to list data structures and the maximum, minimum, average and median temperature for the days given gets computed.</li>
+<li>
+<p>The response object that is then  returned will be in the following format:</p>
+
+{</p>
+<pre><code>“maximum”: value,
+
+“minimum”: value,
+
+“average”: value,
+
+“median”: value,
+</code></pre>
+<p>}
+
+</li>
+<li>
+<p><strong>NOTE</strong> The third party API, where the weather data gets retrieved from, has limitations on the maximum number of days one can retrieve data depending on the plan one uses. Because of this, on my API limitation I have set a max limit of 5 days for better accuracy.</p>
+</li>
+</ul>
+<h2>Notes on the  project file structure</h2>
+<ul>
+<li>To easily navigate through the project structure, I have attached a map of the structure <a target="_blank" href="https://github.com/jonathankamau/temperature-query-api/tree/main/FileFolderStructure.md">here</a>.</li>
+<li>The entry point to run the app is <a target="_blank" href="https://github.com/jonathankamau/temperature-query-api/tree/main/manage.py">manage.py</a>.</li>
+<li>The Django app and api files are within the <a target="_blank" href="src">src</a> folder.</li>
+<li>The <a target="_blank" href="https://github.com/jonathankamau/temperature-query-api/tree/main/src/app">app</a> folder contains the core Django executable files and settings file.</li>
+<li>The <a target="_blank" href="https://github.com/jonathankamau/temperature-query-api/tree/main/src/api">api</a> folder contains the API's view class, urlpatterns, and a <a target="_blank" href="https://github.com/jonathankamau/temperature-query-api/tree/main/src/api/utils">utils</a> folder that has files containing classes and methods needed by the api view.</li>
+<li>The <a target="_blank" href="https://github.com/jonathankamau/temperature-query-api/tree/main/src/tests">tests</a> folder contains the testcase files for the unittests for the API.</li>
+</ul>
+<h3>Available Endpoint</h3>
+<table>
+<tr><td>GET</td><td><code>/api/locations/{city}/?days={number_of_days}</code></td>
+</table>
+<li>Gets the maximum, minimum, average and median temperature, in fahrenheit, for a given city and period of time</li>
+
+<h2>Getting started with the API</h2>
+<ul>
+<li>
+<p>The project was built using python 3.9 and the <a target="_blank" href="https://www.djangoproject.com/">Django framework</a>. The API utilizes the <a target="_blank" href="https://www.django-rest-framework.org/">Django Rest Framework</a> toolkit.</p>
+</li>
+<li>
+<p>To run this API on your local machine, you will need to clone this project. You can do so using the following command which you can copy and paste on your terminal:</p>
+<p><code>git clone https://github.com/jonathankamau/temperature-query-api.git</code></p>
+</li>
+<li>
+<p>If you would like to test with a deployed version, you can use the following root URL:</p>
+<p><a target="_blank" href="https://d2p54l8woftw5f.cloudfront.net/">https://d2p54l8woftw5f.cloudfront.net/</a></p>
+</li>
+<li>
+<p>And run the endpoint with it as follows:</p>
+<p><code>https://d2p54l8woftw5f.cloudfront.net/api/locations/{city}/?days={number_of_days}</code></p>
+</li>
+</ul>
+<h3>Local Environment Installation</h3>
+<p>In order to be able to successfully run this project on your local machine, ensure you have the following prerequisites</p>
+<h4>Prerequisites</h4>
+<ul>
+<li>Python 3</li>
+<li>Docker</li>
+<li>A Virtual environment (if running manually) based on python 3 within which you will run the project. To set it up, you can follow the guidelines outlined <a target="_blank" href="https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#installing-virtualenv">here</a></li>
+<li>A Weather API token that you can grab from the <a target="_blank" href="https://www.weatherapi.com/">weatherapi</a>. You will need to create an account in order to obtain the token. After getting the token, you can add it to your environment variables using the variable key <a target="_blank" href="/env.example">here</a>.</li>
+</ul>
+<h3>Running using Docker</h3>
+<ul>
+<li>Ensure you have Docker installed. You can find information <a target="_blank" href="https://www.docker.com/get-started">here</a> on how to install Docker on your machine.</li>
+<li>The root folder contains a <a target="_blank" href="https://github.com/jonathankamau/temperature-query-api/tree/main/Makefile">Makefile</a> that handles the container builds and runs for the test and app environments</li>
+</ul>
+<h4>Running tests</h4>
+<ul>
+<li>
+<p>While still in the source folder you can run the following command to run the tests in the test environment:</p>
+<p><code>make test</code></p>
+</li>
+</ul>
+<h4>Running the app</h4>
+<ul>
+<li>
+<p>While still in the source folder you can run the following command to run the app in the app environment:</p>
+<p><code>make dev</code></p>
+</li>
+</ul>
+<h3>Running Manually</h3>
+<p>If you are running the project manually you will need to do the following:
+-   Ensure you have setup a virtual environment following the steps <a target="_blank" href="https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#installing-virtualenv">here</a> and you have navigated to that environment on  your terminal.</p>
+<ul>
+<li>Install the requirements using this command:
+    <code>pip install -r requirements.txt</code></li>
+</ul>
+<h4>Running tests manually</h4>
+<ul>
+<li>
+<p>You can then run the tests either using the following command:</p>
+<p><code>pytest</code></p>
+</li>
+<li>
+<p>You can use the following command as well:
+    <code>python manage.py test</code></p>
+</li>
+</ul>
+<h4>Running the app manually</h4>
+<ul>
+<li>
+<p>While still in the source folder you can run the following command to run the app:</p>
+<p><code>python manage.py runserver</code></p>
+</li>
+</ul>
+<h2>Deployment 🚀</h2>
+<ul>
+<li>
+<p>The API has been deployed on AWS using the following tools:</p>
+<ul>
+<li>CodePipeline</li>
+<li>CodeBuild</li>
+<li>AWS Elastic Beanstalk</li>
+<li>Application Load Balancer</li>
+<li>CloudFront</li>
+</ul>
+</li>
+</ul>
+<h2>Built With</h2>
+<ul>
+<li>Python 3.9</li>
+<li>Django</li>
+<li>Django Rest Framework</li>
+<li>Docker</li>
+<li>AWS</li>
+</ul>
+<h2>Author 📚</h2>
+<ul>
+<li>Jonathan Kamau<ul>
+<li><a target="_blank" href="https://github.com/jonathankamau">Github Profile</a></li>
+<li><a target="_blank" href="https://www.linkedin.com/in/kamaujonathan/">Linkedin Profile</a></li>
+</ul>
+</li>
+</ul>
+<h2>License 🤝</h2>
+<ul>
+<li>This project is licensed under the MIT License - see the <a target="_blank" href="https://github.com/jonathankamau/temperature-query-api/tree/main/LICENSE">LICENSE</a> file for details.</li>
+</ul>
