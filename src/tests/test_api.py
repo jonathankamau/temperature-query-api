@@ -165,6 +165,7 @@ class QueryEndpointTestcase(BaseTestCase):
             "HOST": "0.0.0.0"
         })
     def test_docker_allowed_hosts(self):
+        """Test if the docker host environment variable is in allowed hosts."""
         importlib.reload(src.app.settings)
         self.assertEqual(
             src.app.settings.ALLOWED_HOSTS, ["0.0.0.0"]
