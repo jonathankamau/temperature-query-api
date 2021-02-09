@@ -3,10 +3,14 @@
 - Tests for the endpoint.
 - Tests for related methods.
 """
+import importlib
 from unittest.mock import patch
 from rest_framework import status
+import src.app.settings
 
 from src.tests.base_test import BaseTestCase
+
+importlib.reload(src.app.settings)
 
 
 class QueryEndpointTestcase(BaseTestCase):
@@ -153,3 +157,15 @@ class QueryEndpointTestcase(BaseTestCase):
 
         self.assertEqual(
             response.data, expected_message)
+
+    @patch.dict(
+        "os.environ",
+        {
+            "ENVIRONMENT": "docker-development",
+            "HOST": "0.0.0.0"
+        })
+    def test_docker_allowed_hosts(self):
+        importlib.reload(src.app.settings)
+        self.assertEqual(
+            src.app.settings.ALLOWED_HOSTS, ["0.0.0.0"]
+        )
