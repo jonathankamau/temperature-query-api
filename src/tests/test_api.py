@@ -6,11 +6,9 @@
 import importlib
 from unittest.mock import patch
 from rest_framework import status
+
 import src.app.settings
-
 from src.tests.base_test import BaseTestCase
-
-importlib.reload(src.app.settings)
 
 
 class QueryEndpointTestcase(BaseTestCase):
