@@ -70,7 +70,7 @@ In order to be able to successfully run this project on your local machine, ensu
 -   Python 3
 -   Docker
 -   A Virtual environment (if running manually) based on python 3 within which you will run the project. To set it up, you can follow the guidelines outlined [here](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#installing-virtualenv)
--   A Weather API token that you can grab from the [weatherapi](https://www.weatherapi.com/). You will need to create an account in order to obtain the token. After getting the token, you can add it to your environment variables using the variable key [here](/env.example).
+-   A Weather API token that you can grab from the [weatherapi](https://www.weatherapi.com/). You will need to create an account in order to obtain the token. After getting the token, you can add it to your environment variables using the variable key [here](/env.example). Ensure you rename the `env.example` file to `.env`.
 
 ### Running using Docker
 -   Ensure you have Docker installed. You can find information [here](https://www.docker.com/get-started) on how to install Docker on your machine.
@@ -121,7 +121,7 @@ If you are running the project manually you will need to do the following:
 ## Deployment 🚀
 
 -   The API has been deployed on AWS using the following tools:
-
+    -   CircleCi
     -   CodePipeline
     -   CodeBuild
     -   AWS Elastic Beanstalk
