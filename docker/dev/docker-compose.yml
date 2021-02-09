@@ -19,6 +19,8 @@ services:
     environment:
       DJANGO_SETTINGS_MODULE: src.app.settings
       WEATHER_API_KEY: ${WEATHER_API_KEY}
+      ENVIRONMENT: docker-development
+      HOST: "0.0.0.0"
     command: /dev.sh
     ports:
       - "8000:8000"
