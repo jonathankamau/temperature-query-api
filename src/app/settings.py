@@ -33,6 +33,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+if os.getenv('ENVIRONMENT') == "docker-development":
+
+    ALLOWED_HOSTS.append(os.getenv('HOST'))
+
 # Application definition
 
 INSTALLED_APPS = [
